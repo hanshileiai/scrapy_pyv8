@@ -23,6 +23,6 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y python python-pip python-d
         pip install python-slugify && \
         pip install tldextract && \
         pip install python-dateutil && \
-        pip install Pillow && \
+        pip install pillow==2.9.0 && \
         pip install python-resize-image && \
         apt-get install -y opencc && pip install opencc
