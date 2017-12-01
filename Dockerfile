@@ -11,7 +11,7 @@ RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 627220E7 && \
         apt-get update --fix-missing
 
 # install python and scrapy
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y git python python-pip python-dev build-essential libxml2-dev libxslt-dev libffi-dev libssl-dev libmysqlclient-dev libjpeg8 libjpeg62-dev libfreetype6 libfreetype6-dev mailutils ssmtp && \
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y git python python-pip python-dev build-essential libxml2-dev libxslt-dev libffi-dev libssl-dev libmysqlclient-dev libjpeg8 libjpeg62-dev libfreetype6 libfreetype6-dev wget unzip mailutils ssmtp && \
         apt-get install -y --reinstall cron && \
         pip install --upgrade pip && pip install --upgrade virtualenv && \ 
         pip install lxml && pip install pyopenssl && pip install Scrapy && pip install --upgrade scrapy && \
@@ -28,4 +28,10 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y git python python-pip pyth
         apt-get install -y opencc && pip install opencc && \
         pip install future && \
         pip install jieba && \
-        pip install git+https://github.com/seomoz/simhash-py.git
+        pip install git+https://github.com/seomoz/simhash-py.git && \
+
+        apt-get install -y libboost-all-dev && \
+        wget https://github.com/emmetio/pyv8-binaries/raw/master/pyv8-linux64.zip && \
+        unzip pyv8-linux64.zip && \
+        mv PyV8.py _PyV8.so  /usr/lib/python2.7/dist-packages/ && \
+        rm -rf pyv8-linux64.zip
